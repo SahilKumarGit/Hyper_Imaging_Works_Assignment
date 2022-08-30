@@ -1,5 +1,5 @@
-import supabase from "../../operation/superbase"
-import { emptyString, invalidEmail, invalidPincode } from "../../operation/validation"
+import supabase from "../../../operation/superbase"
+import { emptyString, invalidEmail, invalidPincode } from "../../../operation/validation"
 
 export default async function handler(req, res) {
     switch (req.method) {
