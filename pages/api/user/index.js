@@ -57,7 +57,7 @@ const get = async (req, res) => {
         if (error) return bad(res, 400, error.message)
         if (get.length == 0) return bad(res, 404, 'No user list avalable!')
 
-        return good(res, 201, data, 'user list!')
+        return good(res, 200, data, 'user list!')
     } catch (e) {
         bad(res, 500, e.message)
     }
