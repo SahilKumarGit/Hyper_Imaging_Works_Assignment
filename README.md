@@ -1,34 +1,343 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hyper Imaging Works Assignment
 
-## Getting Started
+[DEMO](https://hyper-assignment.vercel.app/)
 
-First, run the development server:
+##### Subtask #1: Use Supabase and create instance of Postgres SQL. create these tables:
+https://dbdiagram.io/d/6308a511f1a9b01b0fec09a7
 
-```bash
-npm run dev
-# or
-yarn dev
+##### Output of subtask#1: 
+- A .SQL file with the create table commands
+- Credentials to the Postgres DB / Access to Supabase
+
+##### Subtask #2: Set up a NextJS with only API handlers for CRUD operations on each table on Supabase. It will essentially act as a tunnel to the supabase’s API.
+ .
+##### Output of subtask#2:
+- Github repository with the code for the NextJS application
+- .env file for Supabase URL and key storage
+
+##### Subtask#3: Deploy this NextJS application to Vercel using Github connection
+https://nextjs.org/learn/basics/deploying-nextjs-app/deploy
+
+### API's
+There are 32 CURD apis based on 8 tables
+
+### USER APIS
+#### Create User (`PSOT` ./api/user)
+##### request body
+```json
+{
+    "name":"Sahil",
+    "username":"sahil_rrey4",
+    "email":"email@yahooj.com",
+    "location":"any"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "message": "user created successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Get All User (`GET` ./api/user)
 
-## Learn More
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data": [...]
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+#### Update Each User (`PUT` ./api/user/:userId)
+##### request body
+```json
+{
+    "name":"Sahil",
+    "username":"sahil_rrey4",
+    "email":"email@yahooj.com",
+    "location":"any"
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data":{...}
+    "message": "user updated successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Delete Each User (`DELETE` ./api/user/:userId)
 
-## Deploy on Vercel
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "message": "user deleted successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+
+
+
+
+### PHYSICAL ADDRESS APIS
+#### Create physical_address (`PSOT` ./api/physical_address)
+##### request body
+```json
+{
+    "user_id": "7f03e986-c01b-459a-9ac6-fca9acef7bec",
+    "line1": "addwwe",
+    "line2": "",
+    "city": "jajpur",
+    "state": "odisha",
+    "country": "jajpur",
+    "pincode": "755019"
+}
+```
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "message": "physical_address created successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+
+
+#### Get All physical_address (`GET` ./api/physical_address)
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data": [...]
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+#### Update Each Physical_address (`PUT` ./api/physical_address/:addressId)
+##### request body
+```json
+{
+    "user_id": "7f03e986-c01b-459a-9ac6-fca9acef7bec",
+    "line1": "addwwe",
+    "line2": "dgdrg",
+    "city": "jajpur",
+    "state": "odisha",
+    "country": "jajpur",
+    "pincode": "755020"
+}
+```
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data":{...}
+    "message": "physical_address updated successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+#### Delete Each physical_address (`DELETE` ./api/physical_address/:addressId)
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+
+
+
+
+
+
+
+
+
+### ORDER APIS
+#### Create order (`PSOT` ./api/order)
+##### request body
+```json
+{
+    "amount": "10",
+    "delivery_charge": "5",
+    "taxes": "1",
+    "fee": "1",
+    "discount": "2",
+    "currency": "INR",
+    "total": "15",
+    "cashback": "2",
+    "billing_address": "9ec3c5cf-5f5a-4157-a72b-5b891c956012",
+    "shipping_address": "ae28f19b-a7b5-43fb-b64d-9dadf10188c3",
+    "status": false,
+    "profile_id": "7f03e986-c01b-459a-9ac6-fca9acef7bec"
+}
+```
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "message": "order created successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+
+
+#### Get All Order (`GET` ./api/order)
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data": [...]
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+#### Update Each Order (`PUT` ./api/order/:orderId)
+##### request body
+```json
+{
+    "amount": "10",
+    "delivery_charge": "5",
+    "taxes": "1",
+    "fee": "1",
+    "discount": "2",
+    "currency": "INR",
+    "total": "15",
+    "cashback": "2",
+    "billing_address": "9ec3c5cf-5f5a-4157-a72b-5b891c956012",
+    "shipping_address": "ae28f19b-a7b5-43fb-b64d-9dadf10188c3",
+    "status": false,
+    "profile_id": "7f03e986-c01b-459a-9ac6-fca9acef7bec"
+}
+```
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "data":{...}
+    "message": "order updated successfully!"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
+
+#### Delete Each order (`DELETE` ./api/order/:orderId)
+
+##### response body
+SUCCESS
+```json
+{
+    "status": true,
+    "message":"order deleted successfully"
+}
+```
+FAILED
+```json
+{
+    "status": false,
+    "message": "..."
+}
+```
