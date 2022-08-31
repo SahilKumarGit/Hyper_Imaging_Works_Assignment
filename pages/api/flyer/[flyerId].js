@@ -83,9 +83,9 @@ const deleteUser = async (req, res) => {
             .select('id')
 
         if (error && error.message) return bad(res, 400, error.message)
-        if (!data) return bad(res, 404, 'order item info unavalable!')
+        if (!data) return bad(res, 404, 'flyer info unavalable!')
 
-        return good(res, 200, undefined, 'order item deleted successfully!')
+        return good(res, 200, undefined, 'flyer deleted successfully!')
     } catch (e) {
         bad(res, 500, e.message)
     }
